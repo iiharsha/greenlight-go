@@ -90,7 +90,6 @@ func openDB(cfg config) (*sql.DB, error) {
 		return nil, err
 	}
 
-
 	// set the max open connections (idle + in-use)
 	db.SetMaxOpenConns(cfg.db.maxOpenConns)
 	// set the max idle connections
