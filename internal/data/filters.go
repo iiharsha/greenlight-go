@@ -1,6 +1,8 @@
 package data
 
-import validator "github.com/iiharsha/gogreenlight"
+import (
+	"github.com/iiharsha/gogreenlight/internal/validator"
+)
 
 type Filters struct {
 	Page         int

@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strconv"
 
-	validator "github.com/iiharsha/gogreenlight"
 	"github.com/iiharsha/gogreenlight/internal/data"
+	"github.com/iiharsha/gogreenlight/internal/validator"
 )
 
 func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Request) {

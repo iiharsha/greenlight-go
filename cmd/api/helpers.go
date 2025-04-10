@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	validator "github.com/iiharsha/gogreenlight"
+	"github.com/iiharsha/gogreenlight/internal/validator"
 	"github.com/julienschmidt/httprouter"
 )
 
