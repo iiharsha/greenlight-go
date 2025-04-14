@@ -84,7 +84,7 @@ func main() {
 }
 
 func openDB(cfg config) (*sql.DB, error) {
-	//sql.Open() creaes an empty connectin pool, using the DSB from the config
+	//sql.Open() creaes an empty connection pool, using the DSB from the config
 	db, err := sql.Open("postgres", cfg.db.dsn)
 	if err != nil {
 		return nil, err
