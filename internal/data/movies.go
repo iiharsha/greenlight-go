@@ -41,6 +41,7 @@ func (m MovieModel) Insert(movie *Movie) error {
 	return m.DB.QueryRowContext(ctx, query, args...).Scan(&movie.ID, &movie.CreatedAt, &movie.Version)
 }
 
+// Get() returns a specific movie :)
 func (m MovieModel) Get(id int64) (*Movie, error) {
 	if id < 1 {
 		return nil, ErrRecordNotFound
@@ -162,6 +163,19 @@ func ValidateMovie(v *validator.Validator, movie *Movie) {
 	v.Check(len(movie.Genres) <= 5, "genres", "must contain more than 5 genre")
 	v.Check(validator.Unique(movie.Genres), "genres", "must not contain duplicates")
 }
+
+// GetAll fetches a list of movies from the database using optional filters.
+// It supports full-text search on the title, genre filtering, sorting, and pagination.
+//
+// Params:
+// - title: Search query for movie titles.
+// - genres: List of genres to filter by.
+// - filters: Includes sorting and pagination settings.
+//
+// Returns:
+// - Slice of matching movies.
+// - Pagination metadata.
+// - Error if the query fails.
 
 func (m MovieModel) GetAll(title string, genres []string, filters Filters) ([]*Movie, Metadata, error) {
 	//SQL query to retrieve all movie records.
