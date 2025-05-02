@@ -36,7 +36,18 @@ func (app *application) serve() error {
 		defer cancel()
 
 		// 0 indicates (success) status code.
-		shutdownError <- srv.Shutdown(ctx)
+		err := srv.Shutdown(ctx)
+		if err != nil {
+			shutdownError <- err
+		}
+
+		app.logger.PrintInfo("completing background routines", map[string]string{
+			"addr": srv.Addr,
+		})
+
+		app.wg.Wait()
+		shutdownError <- nil
+
 	}()
 
 	app.logger.PrintInfo("starting server", map[string]string{
