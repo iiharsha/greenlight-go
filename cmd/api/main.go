@@ -21,8 +21,8 @@ import (
 )
 
 var (
-	buildTime string
 	version   string
+	buildTime string
 )
 
 type config struct {
@@ -102,6 +102,7 @@ func main() {
 
 	if *displayVersion {
 		fmt.Printf("version:\t%s\n", version)
+		fmt.Printf("Build time:\t%s\n", buildTime)
 		os.Exit(0)
 	}
 
